@@ -52,3 +52,10 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+# Emacs
+*~
+*#
+
+# Assets
+assets/
+cache/
