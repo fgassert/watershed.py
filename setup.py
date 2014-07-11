@@ -7,7 +7,7 @@ setup(
     name = 'watershed',
     version = '0.1',
     packages = ['watershed'],
-    ext_modules = cythonize([Extension('watershed._watershed', ['_watershed.pyx'])]),
+    ext_modules = cythonize([Extension('watershed._watershed', ['watershed/_watershed.pyx'])]),
     include_dirs = [numpy.get_include()],
     license = "MIT"
 )
