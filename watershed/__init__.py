@@ -19,7 +19,7 @@ def delineate_watershed(pt, o):
         
         if region < 1:
             print "ERROR: point out of bounds"
-            return 0
+            return None
 
         fd_ras = os.path.join(ASSETS,"dir_0%d.tif" % region)
         with rasterio.open(fd_ras) as src:
