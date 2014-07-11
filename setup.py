@@ -1,5 +1,5 @@
 from distutils.core import setup 
-from distutils.Extension import Extension
+from distutils.extension import Extension
 from Cython.Build import cythonize
 import numpy
 
