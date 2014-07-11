@@ -1,4 +1,4 @@
-import _watershed
+import watershed._watershed
 import rasterio
 import fiona
 import numpy as np
