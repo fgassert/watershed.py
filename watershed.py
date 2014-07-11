@@ -15,7 +15,7 @@ def delineate_watershed(pt, o):
     with rasterio.drivers():
         with rasterio.open(REGION_RAS) as src:
             x,y = from_longlat(pt,src.affine)
-            region = src.read_band(1, window=((x,x+1),(y,y+1)))
+            region = src.read_band(1, window=((x,x+1),(y,y+1)))[0,0]
         
         if region < 1:
             print "ERROR: point out of bounds"
@@ -46,8 +46,8 @@ def delineate_watershed(pt, o):
                            mask=res>0, 
                            transform=src.affine, 
                            connectivity=8))
-        schema = {'properties':[('pour_lat','int'),
-                                ('pour_long','int')],
+        schema = {'properties':[('pour_lat','float'),
+                                ('pour_long','float')],
                   'geometry':'Polygon'}
         with fiona.drivers():
             if ext == '.zip':
@@ -67,7 +67,7 @@ def delineate_watershed(pt, o):
                     dst.writerecords(polys)
                 with zipfile.ZipFile(o,'w') as z:
                     for e in ['.shp','.shx','.dbf','.cpg','.prj']:
-                        z.write(o[:-4]+e)
+                        z.write(o[:-4]+e, arcname=os.path.basename(o[:-4]+e))
                         os.remove(o[:-4]+e)
             elif ext == '.shp':
                 with fiona.open(o,'w',

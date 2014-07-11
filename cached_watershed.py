@@ -3,7 +3,7 @@ import os
 import sys
 
 CACHE = "cache"
-EXTS = {'shp':'.shp','json':'.json','tif':'.tif','zip':'.zip'}
+EXTS = {'shp':'.shp','pjson':'.json','json':'.json','tif':'.tif','zip':'.zip'}
 
 def get_watershed(pt, d=0, f='zip',force=False):
     if d>0:
