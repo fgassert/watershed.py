@@ -92,7 +92,7 @@ def snap_to_highest(pt, d, r=None):
     with rasterio.drivers():
         with rasterio.open(r) as src:
             x,y = from_longlat(pt, src.affine)
-            d = d/src.res[0]
+            d = d/abs(src.res[0])
             minx = max(x-d,0)
             maxx = min(x+d+1,src.shape[0])
             miny = max(y-d,0)
