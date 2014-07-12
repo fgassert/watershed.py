@@ -40,12 +40,12 @@ def delineate_watershed(pt, o):
                 dst.write_band(1,res)
 
     if ext in ('.zip', '.shp', '.json'):
-        polys = (
+        poly = [
             {'properties':{'pour_lat':pt[1],'pour_long':pt[0]},'geometry':s}
             for s,v in shapes(res, 
                            mask=res>0, 
                            transform=src.affine, 
-                           connectivity=8))
+                           connectivity=8)][0]
         schema = {'properties':[('pour_lat','float'),
                                 ('pour_long','float')],
                   'geometry':'Polygon'}
@@ -64,7 +64,7 @@ def delineate_watershed(pt, o):
                                 'ESRI Shapefile',
                                 crs=src.crs,
                                 schema=schema) as dst:
-                    dst.writerecords(polys)
+                    dst.write(poly)
                 with zipfile.ZipFile(o,'w') as z:
                     for e in ['.shp','.shx','.dbf','.cpg','.prj']:
                         z.write(o[:-4]+e, arcname=os.path.basename(o[:-4]+e))
@@ -74,7 +74,7 @@ def delineate_watershed(pt, o):
                                 'ESRI Shapefile',
                                 crs=src.crs,
                                 schema=schema) as dst:
-                    dst.writerecords(polys)
+                    dst.write(poly)
             if ext == '.json':
                 if os.path.isfile(o):
                     os.remove(o)
@@ -82,7 +82,7 @@ def delineate_watershed(pt, o):
                                 'GeoJSON',
                                 crs=src.crs,
                                 schema=schema) as dst:
-                    dst.writerecords(polys)
+                    dst.write(poly)
             
 
 def snap_to_highest(pt, d, r=None):
