@@ -1,14 +1,14 @@
 watershed.py
 ============
 
-Delineate watersheds upstream of a given point. Based on [HydroSHEDS 30as](http://hydrosheds.org). Based on [rasterio](http://github.com/mapbox/rasterio).
+Delineate watersheds upstream of a given point. Based on [HydroSHEDS 30as](http://hydrosheds.org). Built on [rasterio](http://github.com/mapbox/rasterio) and [GDAL](http://gdal.org).
 
 #Usage
 
 ```
 import watershed
 
-loc = (-80,41)      # lat,long
+loc = (-80,41)      # long,lat
 snap_distance = 0.5 # decimal degrees
 outfile = 'my_watershed.shp'
 
@@ -25,7 +25,7 @@ The file format exported by ```watershed.delineate_watershed``` is determined by
 - ```.tif``` for binary geotiff
 
 #Install
-Watersheds.py requires numpy headers to build. After install download and extract the preprocessed [flow direction data](http://md.cc.s3.amazonaws.com/tmp/assets.7z).
+Watersheds.py requires numpy headers to build. After install download and extract the preprocessed [flow direction data](http://md.cc.s3.amazonaws.com/tmp/assets.7z) (large file).
 
 ```
 pip install -r http://raw.github.com/fgassert/watershed.py/master/requirements.txt
@@ -41,7 +41,7 @@ p7zip -d assets.7z
 ```
 
 #License
-Source: MIT
+Source: (c) 2014 Francis Gassert [MIT](http://opensource.org/licenses/MIT)
 
 ##HydroSHEDS
 
