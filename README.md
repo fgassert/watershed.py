@@ -29,7 +29,7 @@ Watersheds.py requires numpy headers to build. After install download and extrac
 
 ```
 pip install -r http://raw.github.com/fgassert/watershed.py/master/requirements.txt
-pip install git+http://raw.github.com/fgassert/watershed.py.git
+pip install git+http://raw.github.com/fgassert/watershed.py.git#egg=watershed
 ```
 
 Download and extract the flow direction data to your project directory
