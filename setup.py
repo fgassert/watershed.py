@@ -13,7 +13,7 @@ setup(
         'numpy'
     ],
     install_requires = [
-        'numpy'
+        'numpy',
         'gdal==1.9.0',
         'rasterio>=0.9',
         'fiona'
