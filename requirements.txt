@@ -1,5 +1,5 @@
 numpy
 'cython>=0.20'
-'gdal==1.9.0'
+'gdal==1.9.1'
 git+https://github.com/mapbox/rasterio.git#egg=rasterio
 fiona
