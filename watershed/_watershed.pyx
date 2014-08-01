@@ -14,7 +14,7 @@ def watershed_from_d8(x, y, fd):
     rows, cols = fd.shape
     return _watershed_from_d8(x,y,rows,cols,fd)
 
-cdef object _watershed_from_d8(int x, int y, int rows, int cols, np.ndarray[DTYPE_t, ndim=2] fd):
+cdef np.ndarray[DTYPE_t, ndim=2] _watershed_from_d8(int x, int y, int rows, int cols, np.ndarray[DTYPE_t, ndim=2] fd):
     cdef np.ndarray inactive = np.zeros((rows,cols), dtype=DTYPE)
     # zero out raster borders as cheap error-catching hack
     fd[0,:]=0
@@ -24,7 +24,7 @@ cdef object _watershed_from_d8(int x, int y, int rows, int cols, np.ndarray[DTYP
     
     return _flow_edge(x,y,fd,inactive)
 
-cdef object _flow_edge(int x,int y,np.ndarray[DTYPE_t, ndim=2] fd, np.ndarray[DTYPE_t, ndim=2] inactive):
+cdef np.ndarray[DTYPE_t, ndim=2] _flow_edge(int x,int y,np.ndarray[DTYPE_t, ndim=2] fd, np.ndarray[DTYPE_t, ndim=2] inactive):
     inactive[x,y] = 1
     if fd[x  ,y-1] & 1   >0 and inactive[x  ,y-1]<1 : 
         _flow_edge(x  ,y-1,fd,inactive)

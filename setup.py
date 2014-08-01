@@ -5,7 +5,7 @@ import numpy
 
 setup(
     name = 'watershed',
-    version = '0.1',
+    version = '0.1.1',
     packages = ['watershed'],
     ext_modules = cythonize([Extension('watershed._watershed', ['watershed/_watershed.pyx'])]),
     setup_requires = [
