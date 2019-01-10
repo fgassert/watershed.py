@@ -1,21 +1,21 @@
-from setuptools import setup 
+from setuptools import setup
 from distutils.extension import Extension
 from Cython.Build import cythonize
 import numpy
+import sys
 
 setup(
     name = 'watershed',
-    version = '0.1.1',
+    version = '0.1.2',
     packages = ['watershed'],
-    ext_modules = cythonize([Extension('watershed._watershed', ['watershed/_watershed.pyx'])]),
+    ext_modules = cythonize([Extension('watershed._watershed', ['watershed/_watershed.pyx'])], compiler_directives={'language_level':sys.version_info[0]}),
     setup_requires = [
-        'cython>=0.20',
+        'cython',
         'numpy'
     ],
     install_requires = [
         'numpy',
-        'gdal==1.9.0',
-        'rasterio>=0.9',
+        'rasterio',
         'fiona'
     ],
 
