@@ -8,7 +8,7 @@ setup(
     name = 'watershed',
     version = '0.1.2',
     packages = ['watershed'],
-    ext_modules = cythonize([Extension('watershed._watershed', ['watershed/_watershed.pyx'])], compiler_directives={'language_level':sys.version_info[0]}),
+    ext_modules = cythonize([Extension('watershed._watershed', ['watershed/_watershed.pyx'], include_dirs = [numpy.get_include()])], compiler_directives={'language_level':sys.version_info[0]}),
     setup_requires = [
         'cython',
         'numpy'
@@ -18,7 +18,6 @@ setup(
         'rasterio',
         'fiona'
     ],
-
     include_dirs = [numpy.get_include()],
     license = "MIT"
 )

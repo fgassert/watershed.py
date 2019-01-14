@@ -59,3 +59,6 @@ docs/_build/
 # Assets
 assets/
 cache/
+
+#OSX
+*.DS_Store
